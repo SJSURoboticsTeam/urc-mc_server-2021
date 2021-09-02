@@ -17,5 +17,5 @@ app.use("/drive", drive);
 app.use("/arm", arm);
 
 app.listen(port, () => {
-  console.log(`Computer:\thttp://localhost:5000`);
+  console.log(`Server: http://localhost:5000`);
 });
