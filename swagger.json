@@ -1,0 +1,131 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Mission Control Server",
+    "description": "SJSU Robotics 2022 express.js server for controlling the rover.",
+    "version": "0.1.9"
+  },
+  "paths": {
+    "/drive": {
+      "get": {
+        "parameters": [
+          {
+            "default": 1,
+            "in": "query",
+            "name": "is_operational",
+            "description": "integer - determines whether rover will carry out commands or not. 0 for off, 1 for on"
+          },
+          {
+            "default": "S",
+            "in": "query",
+            "name": "drive_mode",
+            "description": "string"
+          },
+          {
+            "default": 99,
+            "in": "query",
+            "name": "battery",
+            "description": "integer"
+          },
+          {
+            "default": 10,
+            "in": "query",
+            "name": "left_wheel_speed",
+            "description": "integer"
+          },
+          {
+            "default": 0,
+            "in": "query",
+            "name": "left_wheel_angle",
+            "description": "integer"
+          },
+          {
+            "default": 10,
+            "in": "query",
+            "name": "right_wheel_speed",
+            "description": "integer"
+          },
+          {
+            "default": 0,
+            "in": "query",
+            "name": "right_wheel_angle",
+            "description": "integer"
+          },
+          {
+            "default": 10,
+            "in": "query",
+            "name": "back_wheel_speed",
+            "description": "integer"
+          },
+          {
+            "default": 0,
+            "in": "query",
+            "name": "back_wheel_angle",
+            "description": "integer"
+          }
+        ],
+        "summary": "Returns current rover commands",
+        "description": "Grabs the most current commands from mission control for the rover",
+        "responses": { "200": { "description": "OK" } }
+      },
+      "post": {
+        "summary": "Updates the rover commands",
+        "description": "Updates the mission control server with new commands for the rover",
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/drive/status": {
+      "get": {
+        "summary": "Returns current rover status",
+        "description": "Describes the rover status as described by the GET response query parameters during GET /drive request",
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/arm": {
+      "get": {
+        "parameters": [],
+        "summary": "Returns current rover commands",
+        "description": "Grabs the most current commands from mission control for the rover",
+        "responses": { "200": { "description": "OK" } }
+      },
+      "post": {
+        "summary": "Updates the rover commands",
+        "description": "Updates the mission control server with new commands for the rover",
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/arm/status": {
+      "get": {
+        "summary": "Returns current rover status",
+        "description": "Describes the rover status as described by the GET response query parameters during GET /arm request",
+        "responses": { "200": { "description": "OK" } }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DriveRequest": {
+        "type": "object",
+        "properties": {
+          "is_operational": { "type": "integer" },
+          "drive_mode": { "type": "string" },
+          "speed": { "type": "integer" },
+          "angle": { "type": "integer" }
+        }
+      },
+      "DriveStatus": {
+        "type": "object",
+        "properties": {
+          "is_operational": { "type": "integer" },
+          "drive_mode": { "type": "string" },
+          "left_wheel_speed": { "type": "integer" },
+          "left_wheel_angle": { "type": "integer" },
+          "right_wheel_speed": { "type": "integer" },
+          "right_wheel_angle": { "type": "integer" },
+          "back_wheel_speed": { "type": "integer" },
+          "back_wheel_angle": { "type": "integer" }
+        }
+      }
+    }
+  }
+}
