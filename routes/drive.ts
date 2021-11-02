@@ -45,5 +45,5 @@ drive.post("/", (req, res) => {
 
 drive.get("/status", (req, res) => {
   console.log(driveStatus);
-  res.jsonp({ driveStatus });
+  res.jsonp(driveStatus);
 });
