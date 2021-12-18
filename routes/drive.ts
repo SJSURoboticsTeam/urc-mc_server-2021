@@ -3,6 +3,7 @@ import { DriveRequest, DriveStatus } from "../interfaces/drive.interface";
 export const drive = express.Router();
 
 var driveRequest: DriveRequest = {
+  heartbeat: 0,
   is_operational: 1,
   drive_mode: "S",
   speed: 0,
@@ -10,6 +11,7 @@ var driveRequest: DriveRequest = {
 };
 
 var driveStatus: DriveStatus = {
+  heartbeat: 0,
   is_operational: 0,
   drive_mode: "S",
   battery: 0,
@@ -32,6 +34,7 @@ drive.get("/", (req, res) => {
   driveStatus.right_wheel_angle = Number(req.query.right_wheel_angle);
   driveStatus.back_wheel_speed = Number(req.query.back_wheel_speed);
   driveStatus.back_wheel_angle = Number(req.query.back_wheel_angle);
+  driveRequest.heartbeat = Number(req.query.heartbeat);
   res.jsonp(driveRequest);
 });
 
@@ -40,6 +43,7 @@ drive.post("/", (req, res) => {
   driveRequest.drive_mode = req.body.drive_mode;
   driveRequest.speed = req.body.speed;
   driveRequest.angle = req.body.angle;
+  driveRequest.heartbeat = driveRequest.heartbeat + 1;
   res.jsonp(driveRequest);
 });
 
