@@ -2,8 +2,8 @@ import express from "express";
 import { DriveRequest, DriveStatus } from "../interfaces/drive.interface";
 export const drive = express.Router();
 
-var driveRequest: DriveRequest = {
-  heartbeat: 0,
+var driveCommands: DriveRequest = {
+  heartbeatCount: 0,
   is_operational: 1,
   drive_mode: "S",
   speed: 0,
@@ -11,7 +11,7 @@ var driveRequest: DriveRequest = {
 };
 
 var driveStatus: DriveStatus = {
-  heartbeat: 0,
+  heartbeatCount: 0,
   is_operational: 0,
   drive_mode: "S",
   battery: 0,
@@ -24,7 +24,6 @@ var driveStatus: DriveStatus = {
 };
 
 drive.get("/", (req, res) => {
-  console.log(driveRequest);
   driveStatus.is_operational = Number(req.query.is_operational);
   driveStatus.drive_mode = String(req.query.drive_mode);
   driveStatus.battery = Number(req.query.battery);
@@ -34,17 +33,20 @@ drive.get("/", (req, res) => {
   driveStatus.right_wheel_angle = Number(req.query.right_wheel_angle);
   driveStatus.back_wheel_speed = Number(req.query.back_wheel_speed);
   driveStatus.back_wheel_angle = Number(req.query.back_wheel_angle);
-  driveRequest.heartbeat = Number(req.query.heartbeat);
-  res.jsonp(driveRequest);
+  driveCommands.heartbeatCount = Number(req.query.heartbeatCount);
+  driveCommands.heartbeatCount += 1;
+  console.log("Query Params: ", req.query);
+  console.log("Returned Commands: ", driveCommands);
+  res.jsonp(driveCommands);
 });
 
 drive.post("/", (req, res) => {
-  driveRequest.is_operational = req.body.is_operational;
-  driveRequest.drive_mode = req.body.drive_mode;
-  driveRequest.speed = req.body.speed;
-  driveRequest.angle = req.body.angle;
-  driveRequest.heartbeat = (req.body.heartbeat)+1;
-  res.jsonp(driveRequest);
+  driveCommands.is_operational = req.body.is_operational;
+  driveCommands.drive_mode = req.body.drive_mode;
+  driveCommands.speed = req.body.speed;
+  driveCommands.angle = req.body.angle;
+  driveCommands.heartbeatCount = 0;
+  res.jsonp(driveCommands);
 });
 
 drive.get("/status", (req, res) => {

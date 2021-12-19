@@ -1,5 +1,5 @@
 export interface DriveRequest {
-  heartbeat: number;
+  heartbeatCount: number;
   is_operational: number;
   drive_mode: string;
   speed: number;
@@ -7,7 +7,7 @@ export interface DriveRequest {
 }
 
 export interface DriveStatus {
-  heartbeat: number;
+  heartbeatCount: number;
   is_operational: number;
   drive_mode: string;
   battery: number;
