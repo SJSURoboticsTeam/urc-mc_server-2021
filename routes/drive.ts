@@ -43,7 +43,7 @@ drive.post("/", (req, res) => {
   driveRequest.drive_mode = req.body.drive_mode;
   driveRequest.speed = req.body.speed;
   driveRequest.angle = req.body.angle;
-  driveRequest.heartbeat = driveRequest.heartbeat + 1;
+  driveRequest.heartbeat = (req.body.heartbeat)+1;
   res.jsonp(driveRequest);
 });
 
