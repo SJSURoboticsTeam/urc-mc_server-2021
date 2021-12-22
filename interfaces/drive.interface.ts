@@ -1,5 +1,4 @@
 export interface DriveRequest {
-
   heartbeat_count: number;
   is_operational: number;
   drive_mode: string;
