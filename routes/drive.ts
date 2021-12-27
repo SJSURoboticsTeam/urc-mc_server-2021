@@ -35,7 +35,6 @@ drive.get("/", (req, res) => {
   driveStatus.back_wheel_angle = Number(req.query.back_wheel_angle);
 
   driveCommands.heartbeat_count = Number(req.query.heartbeat_count);
-  driveCommands.heartbeat_count += 1;
   console.log("Query Params: ", req.query);
   console.log("Returned Commands: ", driveCommands);
   res.jsonp(driveCommands);
