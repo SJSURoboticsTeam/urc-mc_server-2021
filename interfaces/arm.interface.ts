@@ -2,7 +2,6 @@ export interface ArmRequest {
   heartbeat_count: number;
   is_operational: number;
   arm_speed: number;
-  battery:number;
   rotunda_angle: number;
   shoulder_angle: number;
   elbow_angle: number;

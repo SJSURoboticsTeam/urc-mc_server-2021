@@ -6,7 +6,6 @@ var armCommands: ArmRequest = {
   heartbeat_count: 0,
   is_operational: 1,
   arm_speed: 0,
-  battery:0,
   rotunda_angle: 0,
   shoulder_angle: 0,
   elbow_angle: 0,
@@ -49,6 +48,7 @@ arm.get("/", (req, res) => {
 
   armStatus.pinky_angle = Number(req.query.pinky_angle);
   armStatus.ring_angle = Number(req.query.ring_angle);
+  armStatus.middle_angle = Number(req.query.middle_angle);
   armStatus.pointer_angle = Number(req.query.pointer_angle);
   armStatus.thumb_angle = Number(req.query.thumb_angle);
   
@@ -63,7 +63,6 @@ arm.post("/", (req, res) => {
   //res.send("arm-endpoint");
   armCommands.is_operational = req.body.is_operational;
   armCommands.arm_speed = req.body.arm_speed;
-  armCommands.battery = req.body.battery;
   armCommands.rotunda_angle = req.body.rotunda_angle;
   armCommands.shoulder_angle = req.body.shoulder_angle;
   armCommands.elbow_angle = req.body.elbow_angle;
@@ -72,6 +71,7 @@ arm.post("/", (req, res) => {
   
   armCommands.pinky_angle = req.body.pinky_angle;
   armCommands.ring_angle = req.body.ring_angle;
+  armCommands.middle_angle = req.body.middle_angle;
   armCommands.pointer_angle = req.body.pointer_angle;
   armCommands.thumb_angle = req.body.thumb_angle;
 
