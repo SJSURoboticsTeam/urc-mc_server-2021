@@ -1,6 +1,7 @@
 export interface DriveRequest {
   heartbeat_count: number;
   is_operational: number;
+  wheel_shift: number;
   drive_mode: string;
   speed: number;
   angle: number;
@@ -9,6 +10,7 @@ export interface DriveRequest {
 export interface DriveStatus {
   heartbeat_count: number;
   is_operational: number;
+  wheel_shift: number;
   drive_mode: string;
   battery: number;
   left_wheel_speed: number;

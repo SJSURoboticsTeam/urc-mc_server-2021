@@ -5,6 +5,7 @@ export const drive = express.Router();
 var driveCommands: DriveRequest = {
   heartbeat_count: 0,
   is_operational: 1,
+  wheel_shift: 0,
   drive_mode: "S",
   speed: 0,
   angle: 0,
@@ -13,6 +14,7 @@ var driveCommands: DriveRequest = {
 var driveStatus: DriveStatus = {
   heartbeat_count: 0,
   is_operational: 0,
+  wheel_shift: 0,
   drive_mode: "S",
   battery: 0,
   left_wheel_speed: 0,
@@ -25,6 +27,7 @@ var driveStatus: DriveStatus = {
 
 drive.get("/", (req, res) => {
   driveStatus.is_operational = Number(req.query.is_operational);
+  driveStatus.wheel_shift = Number(req.query.wheel_shift);
   driveStatus.drive_mode = String(req.query.drive_mode);
   driveStatus.battery = Number(req.query.battery);
   driveStatus.left_wheel_speed = Number(req.query.left_wheel_speed);
@@ -42,6 +45,7 @@ drive.get("/", (req, res) => {
 
 drive.post("/", (req, res) => {
   driveCommands.is_operational = req.body.is_operational;
+  driveCommands.wheel_shift = req.body.wheel_shift;
   driveCommands.drive_mode = req.body.drive_mode;
   driveCommands.speed = req.body.speed;
   driveCommands.angle = req.body.angle;
