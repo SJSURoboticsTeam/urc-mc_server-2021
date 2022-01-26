@@ -5,6 +5,8 @@ export const arm = express.Router();
 var armCommands: ArmRequest = {
   heartbeat_count: 0,
   is_operational: 1,
+  arm_mode: "A",
+  hand_mode: "H",
   arm_speed: 0,
   rotunda_angle: 0,
   shoulder_angle: 0,
@@ -21,6 +23,8 @@ var armCommands: ArmRequest = {
 var armStatus: ArmStatus = {
   heartbeat_count: 0,
   is_operational: 1,
+  arm_mode: "A",
+  hand_mode: "H",
   arm_speed: 0,
   battery: 0,
   rotunda_angle: 0,
@@ -37,6 +41,8 @@ var armStatus: ArmStatus = {
 
 arm.get("/", (req, res) => {
   armStatus.is_operational = Number(req.query.is_operational);
+  armStatus.arm_mode = String(req.query.arm_mode);
+  armStatus.hand_mode = String(req.query.hand_mode);
   armStatus.arm_speed = Number(req.query.arm_speed);
   armStatus.battery = Number(req.query.battery);
   armStatus.rotunda_angle = Number(req.query.rotunda_angle);
@@ -57,6 +63,8 @@ arm.get("/", (req, res) => {
 
 arm.post("/", (req, res) => {
   armCommands.is_operational = req.body.is_operational;
+  armCommands.arm_mode = req.body.arm_mode;
+  armCommands.hand_mode = req.body.hand_mode;
   armCommands.arm_speed = req.body.arm_speed;
   armCommands.rotunda_angle = req.body.rotunda_angle;
   armCommands.shoulder_angle = req.body.shoulder_angle;
