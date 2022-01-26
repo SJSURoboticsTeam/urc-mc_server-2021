@@ -1,6 +1,8 @@
 export interface ArmRequest {
   heartbeat_count: number;
   is_operational: number;
+  arm_mode: string;
+  hand_mode: string;
   arm_speed: number;
   rotunda_angle: number;
   shoulder_angle: number;
@@ -17,6 +19,8 @@ export interface ArmRequest {
 export interface ArmStatus {
   heartbeat_count: number;
   is_operational: number;
+  arm_mode: string;
+  hand_mode: string;
   arm_speed: number;
   battery: number;
   rotunda_angle: number;
